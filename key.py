@@ -1,1 +1,1 @@
-API_KEY_BARD = 'bgiCM_UprFyk0rppJqybQ1Q_EYMsIMPhxlcuk5SkHHq24WDshXS-5vMH3ncriBfkWYYa4g.'
+API_KEY_BARD = 'bwiCM1Rx8374SOkag3ADLRsvYFtkqcmWWbT2igocca-5ckxK2FvQlimsoc2hvEbxQQzSBg.'
