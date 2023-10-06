@@ -1,8 +1,11 @@
 from flask import Flask, request, jsonify, flash
 from bardapi import Bard
-from key import  API_KEY_BARD
 import os
 import oracledb
+from dotenv import load_dotenv
+
+load_dotenv() # Carrega as variáveis de ambiente
+
 
 app = Flask(__name__)
 app.secret_key = 'conect-jobs'
@@ -43,7 +46,7 @@ def testeVocacao():
         data = request.json
         nome = data.get('nome')
         
-        os.environ['_BARD_API_KEY']=API_KEY_BARD
+        os.environ['_BARD_API_KEY'] = os.getenv('API_KEY_BARD')
 
         pergunta = f'Olá, sou uma criança de uma ong chamada Passos Mágicos, me chamdo {nome} e gostaria que você me ajudasse a pensar em que área posso me com base nas minhas informações. Eu gosto bastante de informática, tenho aptidão por isto. Gosto de matemática e gostaria de trabalhar na prefeitura.'
 
