@@ -1,7 +1,6 @@
-from flask import Flask, request, jsonify, flash
+from flask import Flask, request, jsonify
 from bardapi import Bard
 import os
-import oracledb
 from dotenv import load_dotenv
 
 load_dotenv() # Carrega as variáveis de ambiente
@@ -10,21 +9,6 @@ load_dotenv() # Carrega as variáveis de ambiente
 app = Flask(__name__)
 app.secret_key = 'conect-jobs'
 
-def conectaBanco():
-    try:
-        # Crie uma conexão
-        conn = oracledb.connect(user="rm93613", password="150503", dsn="oracle.fiap.com.br:1521/orcl")
-
-        # Cria as instruções para cada módulo
-        inst_cadastro = conn.cursor()
-        inst_consulta = conn.cursor()
-        inst_alteracao = conn.cursor()
-        inst_exclusao = conn.cursor()
-
-        return[conn, inst_cadastro, inst_consulta, inst_alteracao, inst_exclusao]
-    except Exception as erro:
-        return['Erro', str(erro)]
-    
 @app.route('/testeVocacao', methods=['POST'])
 def testeVocacao():
     try:
@@ -43,8 +27,8 @@ def testeVocacao():
 
         #     conexaoComBanco = True
 
-        data = request.json
-        nome = data.get('nome')
+        nome = request.json.get('nome')
+        
         
         os.environ['_BARD_API_KEY'] = os.getenv('API_KEY_BARD')
 
